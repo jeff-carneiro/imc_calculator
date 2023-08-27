@@ -5,47 +5,36 @@ import 'dart:io';
 
 void main(List<String> arguments) {
   print("Olá, boas vindas à calculadora de IMC!");
+
   print("Informe seu o nome:");
   var nome = stdin.readLineSync(encoding: utf8) ?? "";
 
   print("Informe seu peso:");
-  double peso = stdin.readLineSync(encoding: utf8) as double;
-  
+  var lerPeso = stdin.readLineSync(encoding: utf8) ?? "";
+  var peso = double.parse(lerPeso);
+
   print("Informe sua altura:");
-  double altura = stdin.readLineSync(encoding: utf8) as double;
+  var lerAltura = stdin.readLineSync(encoding: utf8) ?? "";
+  var altura = double.parse(lerAltura);
 
-  //IMC
-  double imc = calcularIMC(peso, altura);
-  //Classificacao
-  double classificacao = verClassificacao(imc);
+  double imc = peso / (altura * altura);
 
-  print("Nome: $nome, Peso: $peso, Altura: $altura IMC: $imc, Classificacao: $classificacao");
-}
-
-//Função: calcular imc
-calcularIMC(double peso, double altura) {
-  return (peso / (altura * altura));
-}
-
-//Função: ver classificação
-verClassificacao(double imc) {
-  String classificacao = "";
-  if (imc < 16) {
-    return classificacao = "Magreza grave";
-  } else if (imc < 17) {
-    return classificacao = "Magreza moderada";
-  } else if (imc < 18.5) {
-    return classificacao = "Magreza leve";
-  } else if (imc < 25) {
-    return classificacao = "Saudável";
-  } else if (imc < 30) {
-    return classificacao = "Sobrepeso";
-  } else if (imc < 35) {
-    return classificacao = "Obesidade grau I";
-  } else if (imc < 40) {
-    return classificacao = "Obesidade grau II (severa)";
-  } else if (imc >= 40) {
-    return classificacao = "Obesidade grau III (mórbida)";
-  }
-  print(classificacao);
+  //Classificação
+    if (imc < 16) {
+      print('Magreza grave');
+    } else if (imc < 17) {
+      print('Magreza moderada');
+    } else if (imc < 18.5) {
+      print('Magreza leve');
+    } else if (imc < 25) {
+      print('Saudável');
+    } else if (imc < 30) {
+      print('Sobrepeso');
+    } else if (imc < 35) {
+      print('Obesidade grau I');
+    } else if (imc < 40) {
+      print('Obesidade grau II (severa)');
+    } else if (imc >= 40) {
+      print('Obesidade grau III (mórbida)');
+    }
 }
